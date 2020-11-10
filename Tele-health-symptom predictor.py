@@ -23,13 +23,12 @@ chcker = False
 #gets the body part and the symtoms from th user23-77 
 print("what part of your body seems to be troubling you?, please select a body part from this list")
 print(baseDf['name'].unique())
-while chcker == True:
+while chcker == False:
 
-	while checker == False:
+	while checker == True:
 		bp = input()
 		checker = bp in listOfBP
-
-		if checker == True:
+		if checker == False:
 			print("please enter a valid body part")
 			chcker = checker
 			checker = True

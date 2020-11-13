@@ -14,16 +14,40 @@ import scrapy
 
 from scrapy import Request
 
+class QuotesSpider(scrapy.Spider):
+    name = "quotes"
+
+    def start_requests(self):
+        urls = [
+            'http://quotes.toscrape.com/page/1/',
+            'http://quotes.toscrape.com/page/2/',
+        ]
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse)
+
+    def parse(self, response):
+        page = response.url.split("/")[-2]
+        filename = f'quotes-{page}.html'
+        with open(filename, 'wb') as f:
+            f.write(response.body)
+        self.log(f'Saved file {filename}')
 
 class DoctorSpider(scrapy.Spider):
-    name = 'doctors'
-    start_urls = [
-        'file:///C:/Users/18572/Desktop/KSU%20lectures/HMI%207540/Find%20A%20Doctor.html',
+    name = "doctors"
+
+    def start_request(self):
+        urls = [
+        'file:///C:/Users/18572/Desktop/KSU%20lectures/HMI%207540/Find%20A%20Doctor3.html',
         
     ]
 
-    def parse(self, response):
-        urls = response.css('.provider__name-link::attr(href)').getall()
+    #start_urls = [
+        #'file:///C:/Users/18572/Desktop/KSU%20lectures/HMI%207540/Find%20A%20Doctor3.html',
+        
+    #]
+
+    #def parse(self, response):
+        #urls = response.css('.provider__name-link::attr(href)').getall()
         for url in urls:
             yield Request(url, dont_filter=True, callback=self.parse_doctor)
 

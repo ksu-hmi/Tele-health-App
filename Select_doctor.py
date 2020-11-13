@@ -19,7 +19,6 @@ class DoctorSpider(scrapy.Spider):
     name = 'doctors'
     start_urls = [
         'file:///C:/Users/18572/Desktop/KSU%20lectures/HMI%207540/Find%20A%20Doctor.html',
-        #'file:///your/path/to/find-a-doctor-results.html',
         
     ]
 

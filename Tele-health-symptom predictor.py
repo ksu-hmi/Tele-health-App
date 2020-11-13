@@ -1,5 +1,5 @@
 import pandas as pd 
-
+import scrapy
 df = pd.read_csv('./bosydi.csv')
 baseDf = df.drop_duplicates('name.2')
 	#this is the df i will be using throughout
@@ -93,3 +93,4 @@ print("less common diagnosis: " + notCommon1, notCommon2)
 #if symptom and body part does not macth up create a search with just symptoms
 #organize parts into methods
 
+#

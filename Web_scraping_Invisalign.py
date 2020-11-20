@@ -27,6 +27,7 @@ class QuotesSpider(CrawlSpider):
         ]
     rules = (Rule(LinkExtractor(allow=(), restrict_xpaths=('//div[@class="dlPagerBottom"]/a[6]',)),callback="", follow= True),)
     def __init__(self):
+        
         drivergeo = webdriver.Firefox(executable_path=r'D:\geckodriver.exe')
         self.driver = drivergeo
     def parse(self, response):

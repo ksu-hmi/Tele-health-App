@@ -6,7 +6,7 @@ Usage:
 4. Right click in whitespace, "Save As" Complete webpage.
 5. Open the saved html file in your browser
 6. Replace your `file://` url into `start_urls` array in script.
-7. Execute script with `scrapy runspider doctor_spider.py -o file-to-output.csv`
+7. Execute script with `scrapy runspider Select_doctor.py -o 2020-11-20_doctor_list.csv`
 8. Open CSV and enjoy browsing doctors at a glance in a spreadsheet.
 """
 

@@ -24,7 +24,7 @@ class DoctorSpider(scrapy.Spider):
 #Obtain all provider's names
     def parse(self, response):
         urls=response.css('div.ps-sr-name>a::attr(href)').getall()
-        #urls = response.css('.provider__name-link::attr(href)').getall()
+        
         for url in urls:
             yield Request(url, dont_filter=True, callback=self.parse_doctor)
 #For every Provider, obtain name, specialty , gender and location of hospital
@@ -32,27 +32,25 @@ class DoctorSpider(scrapy.Spider):
         yield {
 
             'name': self.trim(response.css('div.ps-sr-name>a::text').get()),
-           # 'primary_specialty': self.trim(response.css('.provider-personal-info .primary-specialty::text').get()),
+           
             'primary_specialty': self.trim(response.css('div.ps-sr-specialty>span::text').get()),
-           #'specialties': self.trim(response.css('.provider-personal-info .specialties::text').get()),
-           #'gender': self.trim(response.css('.provider-personal-info .gender::text').get()),
+           
             'gender': self.trim(response.css('div.ps-sr-gender::text').get()),
             'locations': self.parse_locations(response),
         }
 #For every Provider, obtain Location name, address , and phone number
     def parse_locations(self, response):
         locations = []
-        #for location in response.css('.locations-list .location-item'):
+        
         for location in response.css('div.location-text'):
             locations.append({
-                #'name': self.trim(location.css('.location-name::text').get()),
+                
                 'name': self.trim(location.css('fieldset.ps-sr-location-info>legend::text').get()),
-                #'phone': self.trim(location.css('.location-phone::attr(data-ga-label)').get()),
+               
                 'phone': self.trim(location.css('button>a.location-call-link::attr(href)').get()),
-                #'address': self.trim(' '.join(location.css('.location-address::text').getall())),
+
                 'address': self.trim(''.join(location.css('div.location-address-content>div.location-text::text').getall()))
-                #'hours': ' '.join(location.css('.office-hours-list .day::text').getall()),
-                #'website': self.trim(location.css('.location-website a::attr(href)').get())
+               
             })
 
         return locations

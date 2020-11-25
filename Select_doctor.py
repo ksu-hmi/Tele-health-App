@@ -6,7 +6,7 @@ Usage:
 4. Right click in whitespace, "Save As" Complete webpage.
 5. Open the saved html file in your browser and copy link
 6. Replace your `file://` url into `start_urls` array in script.
-7. #Execute script with `scrapy runspider Select_doctor.py -o fselect_doctor_file.csv`
+7. Execute script with `scrapy runspider Select_doctor.py -o select_doctor_file.csv`
 8. Open CSV and enjoy browsing doctors at a glance in a spreadsheet.
 """
 
@@ -19,18 +19,18 @@ class DoctorSpider(scrapy.Spider):
 #`file://` url replaced into `start_urls` array in script    
     start_urls = [
         #'Find_A_Doctor.html',
-        'file:///C:/Users/18572/Desktop/KSU%20lectures/HMI%207540/Find%20A%20Doctor4.html'
+        'file:///C:/Users/18572/Desktop/KSU%20lectures/HMI%207540/Find%20A%20Doctor4.html',
     ]
-
+#Obtain all provider's names
     def parse(self, response):
         urls=response.css('div.ps-sr-name>a::attr(href)').getall()
         #urls = response.css('.provider__name-link::attr(href)').getall()
         for url in urls:
             yield Request(url, dont_filter=True, callback=self.parse_doctor)
-
+#For every Provider, obtain name, specialty , gender and location of hospital
     def parse_doctor(self, response):
         yield {
-           # 'name': self.trim(response.css('.provider-personal-info .name::text').get()),
+
             'name': self.trim(response.css('div.ps-sr-name>a::text').get()),
            # 'primary_specialty': self.trim(response.css('.provider-personal-info .primary-specialty::text').get()),
             'primary_specialty': self.trim(response.css('div.ps-sr-specialty>span::text').get()),
@@ -39,7 +39,7 @@ class DoctorSpider(scrapy.Spider):
             'gender': self.trim(response.css('div.ps-sr-gender::text').get()),
             'locations': self.parse_locations(response),
         }
-
+#For every Provider, obtain Location name, address , and phone number
     def parse_locations(self, response):
         locations = []
         #for location in response.css('.locations-list .location-item'):

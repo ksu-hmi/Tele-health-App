@@ -4,9 +4,9 @@ Usage:
 2. Fill in the search parameters you desire and execute a search.
 3. Scroll to the bottom of the page to load all search results (hold down arrow, etc) You will see "No more results"
 4. Right click in whitespace, "Save As" Complete webpage.
-5. Open the saved html file in your browser
+5. Open the saved html file in your browser and copy link
 6. Replace your `file://` url into `start_urls` array in script.
-7. #Execute script with `scrapy runspider Select_doctor.py -o file-to-output.csv`
+7. #Execute script with `scrapy runspider Select_doctor.py -o fselect_doctor_file.csv`
 8. Open CSV and enjoy browsing doctors at a glance in a spreadsheet.
 """
 
@@ -16,7 +16,7 @@ from scrapy import Request
 
 class DoctorSpider(scrapy.Spider):
     name = 'doctors'
-   
+#`file://` url replaced into `start_urls` array in script    
     start_urls = [
         #'Find_A_Doctor.html',
         'file:///C:/Users/18572/Desktop/KSU%20lectures/HMI%207540/Find%20A%20Doctor4.html'

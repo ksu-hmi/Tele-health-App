@@ -36,6 +36,7 @@ class DoctorSpider(scrapy.Spider):
             'primary_specialty': self.trim(response.css('div.ps-sr-specialty>span::text').get()),
            
             'gender': self.trim(response.css('div.ps-sr-gender::text').get()),
+            
             'locations': self.parse_locations(response),
         }
 #For every Provider, obtain Location name, address , and phone number

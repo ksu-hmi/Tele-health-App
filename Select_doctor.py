@@ -46,7 +46,7 @@ class DoctorSpider(scrapy.Spider):
         for location in response.css('.location-text'):
             locations.append({
                 #'name': self.trim(location.css('.location-name::text').get()),
-                'name': self.trim(location.css('.ps-sr-location-info>::text').get()),
+                'locname': self.trim(location.css('.ps-sr-location-info>::text').get()),
                 #'phone': self.trim(location.css('.location-phone::attr(data-ga-label)').get()),
                 'phone': self.trim(location.css('.location-call-link::attr(href)').get()),
                 #'address': self.trim(' '.join(location.css('.location-address::text').getall())),
@@ -54,8 +54,7 @@ class DoctorSpider(scrapy.Spider):
                 #'hours': ' '.join(location.css('.office-hours-list .day::text').getall()),
                 #'website': self.trim(location.css('.location-website a::attr(href)').get())
             })
-
-        return locations
+            return locations
 
     @staticmethod
     def trim(words):

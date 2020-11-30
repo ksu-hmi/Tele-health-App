@@ -90,6 +90,11 @@ else:
 print("common diagnosis: " + sym1Name, sym2Name)
 print()
 print("less common diagnosis: " + notCommon1, notCommon2)
+
+print("Please refer to generated doctors list")
+
+
+
 #if symptom and body part does not macth up create a search with just symptoms
 #organize parts into methods
 

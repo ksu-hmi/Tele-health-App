@@ -27,6 +27,7 @@ class DoctorSpider(scrapy.Spider):
         #urls = response.css('.provider__name-link::attr(href)').getall()
         for url in urls:
             yield Request(url, dont_filter=True, callback=self.parse_doctor)
+            
 #For every Provider, obtain name, specialty , gender and location of hospital
     def parse_doctor(self, response):
         yield {
@@ -46,7 +47,7 @@ class DoctorSpider(scrapy.Spider):
         for location in response.css('.location-text'):
             locations.append({
                 #'name': self.trim(location.css('.location-name::text').get()),
-                'locname': self.trim(location.css('.ps-sr-location-info>::text').get()),
+                'name': self.trim(location.css('.ps-sr-location-info>::text').get()),
                 #'phone': self.trim(location.css('.location-phone::attr(data-ga-label)').get()),
                 'phone': self.trim(location.css('.location-call-link::attr(href)').get()),
                 #'address': self.trim(' '.join(location.css('.location-address::text').getall())),

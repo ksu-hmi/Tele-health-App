@@ -92,13 +92,12 @@ print()
 #print("less common diagnosis: " + notCommon1, notCommon2)
 
 
-print("Please refer to generated doctors list:")
-# To Call the Doctors List 
-
-with open('select_doctor_file1.csv', mode='r') as file:
-	doctors_list =csv.reader(file)
-	for lines in doctors_list:
-		print(lines)
+choice=input('would you like to view the doctors list (Enter Y or N):')
+if choice.upper() == 'Y':
+	with open('select_doctor_file1.csv', mode='r') as file:
+		doctors_list =csv.reader(file)
+		for lines in doctors_list:
+			print(lines)
 
 
 

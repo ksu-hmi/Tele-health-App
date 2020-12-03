@@ -1,3 +1,4 @@
+import csv
 import pandas as pd 
 
 df = pd.read_csv('./bosydi.csv')
@@ -92,6 +93,15 @@ print()
 print("less common diagnosis: " + notCommon1, notCommon2)
 
 print("Please refer to generated doctors list")
+
+#doctors_list=open('select_doctor_file1.csv,'r')
+#doctor_list= pd.read_csv('./select_doctor_file1.csv')
+#print(doctor_list)
+with open('select_doctor_file1.csv', mode='r') as file:
+	doctors_list =csv.reader(file)
+	for lines in doctors_list:
+		print(lines)
+
 
 
 

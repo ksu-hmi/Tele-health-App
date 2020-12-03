@@ -8,7 +8,6 @@ listOfBP = baseDf['name'].unique()
 checker = True
 chcker = False
 
-
 ################################TESTING#############################################################
 #print(baseDf['name.2'].unique()) 
 #print(len(baseDf['name.2'].unique()))
@@ -21,7 +20,7 @@ chcker = False
 
 ################################TESTING#############################################################
 
-#gets the body part and the symtoms from th user23-77 
+#To get the body part and the symptoms from th user23-77 
 print("what part of your body seems to be troubling you?, please select a body part from this list")
 print(baseDf['name'].unique())
 while chcker == False:
@@ -74,9 +73,9 @@ while chcker1 == False:
 		chcker1 = True
 		break
 
-print("your diagnosis is most likely")
+print("Your diagnosis is most likely:")
 
-#returns the diagnosis according to the user input
+#To return the diagnosis according to the user input
 
 sym1Name = baseDf.loc[(baseDf['name'] == bp) & (baseDf['name.1'] == sy) & (baseDf['is_common'] == 1), ['name.2', 'description', 'symptoms', 'workup', 'treatment']]
 notCommon1 = baseDf.loc[(baseDf['name'] == bp) & (baseDf['name.1'] == sy) & (baseDf['is_common'] == 0), ['name.2', 'description', 'symptoms', 'workup', 'treatment']]
@@ -90,13 +89,12 @@ else:
 
 print("common diagnosis: " + sym1Name, sym2Name)
 print()
-print("less common diagnosis: " + notCommon1, notCommon2)
+#print("less common diagnosis: " + notCommon1, notCommon2)
 
-print("Please refer to generated doctors list")
 
-#doctors_list=open('select_doctor_file1.csv,'r')
-#doctor_list= pd.read_csv('./select_doctor_file1.csv')
-#print(doctor_list)
+print("Please refer to generated doctors list:")
+# To Call the Doctors List 
+
 with open('select_doctor_file1.csv', mode='r') as file:
 	doctors_list =csv.reader(file)
 	for lines in doctors_list:
@@ -104,8 +102,3 @@ with open('select_doctor_file1.csv', mode='r') as file:
 
 
 
-
-#if symptom and body part does not macth up create a search with just symptoms
-#organize parts into methods
-
-#

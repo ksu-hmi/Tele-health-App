@@ -7,8 +7,10 @@ Demonstration on how to build the tele-health app.
  Scrapy download needed C++ download on Python.exe to be able to run the scrapy code.
  Original Code file had tags not matching the current data from the website.
  Manual Tags identification using the output html code was succesfully done.
- Tags identified and code modified with identified tag
+ Tags identified and code individually modified with identified tag
  Some Tags not identified were ommitted from the code. 
+ Part 2 of our code did not completely run.
+ Overall code was able to call call symptoms and make diagnosis. 
 
 
 

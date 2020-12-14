@@ -27,7 +27,7 @@ class DoctorSpider(scrapy.Spider):
         #urls = response.css('.provider__name-link::attr(href)').getall()
         for url in urls:
             yield Request(url, dont_filter=True, callback=self.parse_doctor)
-            
+
 #For every Provider, obtain name, specialty , gender and location of hospital
     def parse_doctor(self, response):
         yield {
